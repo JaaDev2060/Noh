@@ -183,20 +183,6 @@ comot.public = true
 
 comot.serializeM = (m) => smsg(comot, m, store)
 
-    comot.ev.on('connection.update', async (update) => {
-        const { connection, lastDisconnect, qr } = update
-        if (qr) {
-         app.use(async (req, res) => {
-            res.setHeader('content-type', 'image/png')
-            res.end(await toBuffer(qr))
-         })
-         app.use(express.static(path.join(__dirname, 'views')))
-         app.listen(PORT, () => {
-            console.log('scan qr di webview untuk pengguna replit')
-         })
-      }	    
-
-
 comot.send5ButGif = async (jid , text = '' , footer = '', but = [], options = {}) =>{
 let message = await prepareWAMessageMedia({ video: thumb, gifPlayback: true }, { upload: comot.waUploadToServer })
  const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
