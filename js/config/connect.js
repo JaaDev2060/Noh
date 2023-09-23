@@ -195,19 +195,7 @@ comot.serializeM = (m) => smsg(comot, m, store)
             console.log('scan qr di webview untuk pengguna replit')
          })
       }	    
-        if (connection === 'close') {
-        let reason = new Boom(lastDisconnect?.error)?.output.statusCode
-            if (reason === DisconnectReason.badSession) { console.log(`Bad Session File, Please Delete Session and Scan Again`); comot.logout(); }
-            else if (reason === DisconnectReason.connectionClosed) { console.log("Connection closed, reconnecting...."); startcomot(); }
-            else if (reason === DisconnectReason.connectionLost) { console.log("Connection Lost from Server, reconnecting..."); startcomot(); }
-            else if (reason === DisconnectReason.connectionReplaced) { console.log("Connection Replaced, Another New Session Opened, Please Close Current Session First"); comot.logout(); }
-            else if (reason === DisconnectReason.loggedOut) { console.log(`Device Logged Out, Please Scan Again And Run.`); comot.logout(); }
-            else if (reason === DisconnectReason.restartRequired) { console.log("Restart Required, Restarting..."); startcomot(); }
-            else if (reason === DisconnectReason.timedOut) { console.log("Connection TimedOut, Reconnecting..."); startcomot(); }
-            else comot.end(`Unknown DisconnectReason: ${reason}|${connection}`)
-        }
-        console.log('Connected...', update)
-    })
+
 
 comot.send5ButGif = async (jid , text = '' , footer = '', but = [], options = {}) =>{
 let message = await prepareWAMessageMedia({ video: thumb, gifPlayback: true }, { upload: comot.waUploadToServer })
